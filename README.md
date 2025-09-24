@@ -1,0 +1,109 @@
+# Banking Management System (Python + MySQL)
+This is a **Banking Management System** built using **Python** and **MySQL**.  
+It allows users to register, log in, manage accounts, perform transactions, and view statements.  
+Admins can monitor all accounts and transactions.
+
+---
+
+## Features
+
+### User
+- Register a new account (Savings, Current, Salary, Fixed Deposit)
+- Login with account number & PIN
+- View account details
+- Check balance
+- Change PIN with OTP verification
+- Deposit / Withdraw money
+- Get transaction statements (daily, between dates, full history)
+- Transfer funds between accounts
+
+### Admin 
+- Login with Admin ID & Password
+- View all users or a single user
+- View transactions of a particular user
+- View all transactions on a particular day
+- View transactions between date ranges
+- Monitor full banking system
+
+---
+
+## Tech Stack
+- **Language**: Python 3.10
+- **Database**: MySQL
+- **Libraries Used**:
+  - `mysql-connector-python` - Connect Python with MySQL
+  - `tabulate` - Display tables in a neat format
+  - `colorama` - Colored terminal outputs
+  - `datetime`, `random`, `time` - Built-in Python libraries
+
+---
+
+## Setup Instructions
+
+### 1. Clone Repository 
+```
+https://github.com/Madhavasai21/Banking-Management-system.git
+```
+
+### 2. Install Dependencies
+```
+pip install -r requirements.txt
+```
+
+### 3. Setup Database
+- Open MySQL and create database
+  ```
+  CREATE DATABASE Bank;
+  USE Bank;
+  ```
+- Create required tables
+  ```
+  CREATE TABLE users (
+    User_name VARCHAR(50),
+    Account_number BIGINT AUTO_INCREMENT PRIMARY KEY,
+    Account_type VARCHAR(20),
+    Phone_no VARCHAR(10),
+    Pin VARCHAR(4),
+    Amount INT,
+    Created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  );
+
+  CREATE TABLE transactions (
+      Transaction_id VARCHAR(20) PRIMARY KEY,
+      Account_number BIGINT,
+      Transaction_type VARCHAR(20),
+      Transaction_amount INT,
+      Available_amount INT,
+      Transaction_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  );
+  
+  CREATE TABLE admin (
+      Admin_id INT PRIMARY KEY,
+      Admin_name VARCHAR(50),
+      Password VARCHAR(4)
+  );
+  ```
+---
+
+### 4. Run the project 
+```
+python main.py
+```
+### Sample Workflow
+1. User registers - gets a 14-digit account number.
+2. User logs in → deposits, withdraws, transfers, or checks balance.
+3. Admin logs in → views all users & transactions.
+4. All actions stored in transactions table for records.
+
+### Features Demo
+- User Registration
+- User Actions
+- Admin Login & Actions
+
+### Note
+- Minimum deposit to Open account - 500rs
+- PIN - 4 digits only
+- Account Number - 14 digits (auto-generated)
+
+
+  
