@@ -1,0 +1,7 @@
+Python 3.10
+mysql-connector-python 9.4.0
+Tabulate
+datetime
+random
+colorama
+time 
