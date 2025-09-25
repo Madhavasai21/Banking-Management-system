@@ -59,29 +59,33 @@ pip install -r requirements.txt
 - Create required tables
   ```
   CREATE TABLE users (
-    User_name VARCHAR(50),
-    Account_number BIGINT AUTO_INCREMENT PRIMARY KEY,
-    Account_type VARCHAR(20),
-    Phone_no VARCHAR(10),
-    Pin VARCHAR(4),
-    Amount INT,
-    Created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      User_Name VARCHAR(30),
+      Account_Number BIGINT PRIMARY KEY,
+      Account_Type ENUM('Savings', 'Current'),
+      phone_no VARCHAR(12) UNIQUE,
+      Pin CHAR(4),
+      Amount BIGINT,
+      Created_At TIMESTAMP DEFAULT CURRENT_TIMESTAMP
   );
-
+  
   CREATE TABLE transactions (
-      Transaction_id VARCHAR(20) PRIMARY KEY,
+      Transaction_id VARCHAR(30) PRIMARY KEY,
       Account_number BIGINT,
-      Transaction_type VARCHAR(20),
+      Transaction_type VARCHAR(10), -- 'Credit' or 'Debit'
       Transaction_amount INT,
-      Available_amount INT,
-      Transaction_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      Transaction_Time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+      Available_Amount INT,
+      FOREIGN KEY (Account_number) REFERENCES users(Account_Number)
   );
   
   CREATE TABLE admin (
-      Admin_id INT PRIMARY KEY,
-      Admin_name VARCHAR(50),
-      Password VARCHAR(4)
+      admin_id BIGINT PRIMARY KEY,
+      Admin_Name VARCHAR(20),
+      Password CHAR(6),
+      Email_id VARCHAR(25),
+      Created_At TIMESTAMP DEFAULT CURRENT_TIMESTAMP
   );
+
   ```
 ---
 
